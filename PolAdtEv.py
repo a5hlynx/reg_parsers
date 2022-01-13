@@ -22,7 +22,7 @@ class PolAdtEv:
                                      "Account Management", "DS Access", "Account Logon"]
         self.subcategory_num     =  [0 ,0 ,0, 0, 0, 0, 0, 0, 0]
         self.category_offset     =  [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        self.system              =  {"Security Stage Change":"", "Security System Extension":"", \
+        self.system              =  {"Security State Change":"", "Security System Extension":"", \
                                      "System Integrity":"", "IPsec Driver":"", \
                                      "Other System Events":""}
         self.logon_logoff        =  {"Logon":"", "Logoff":"", "Account Lockout":"", \
