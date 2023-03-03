@@ -6,7 +6,7 @@ Interprets and parses Audit Policy stored in `HKLM\Security\Policy\PolAdtEv`, wh
 
 ### EnumProf.py
 
-Extracts the values of the following keys and enumerates them by SID
+Extracts the values of the following keys and enumerates them by SID.
 - ProfileImagePath from  `HKLM\Software\Microsoft\Windows NT\CurrentVersion\ProfileList` 
 - Distinguished-Name from `HKLM\Software\Microsoft\Windows\CurrentVersion\Group Policy\State` 
 
