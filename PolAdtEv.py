@@ -115,7 +115,7 @@ def main():
         sys.exit(-1)
 
     data=None
-    for value in[v for v in  key.values()]:
+    for value in[v for v in key.values()]:
         data=value.value()
  
     if data is None:
