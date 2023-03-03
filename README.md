@@ -27,7 +27,7 @@ $ python3 PolAdtEv.py -r <Security Hive>
 $ python3 EnumProf.py -r <Software Hive>
 ```
 
-## Examplesssh ash
+## Examples
 
 
 ### PolAdtEv.py
