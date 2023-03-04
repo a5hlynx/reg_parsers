@@ -100,12 +100,12 @@ class PolAdtEv:
             for _k, _v in self.category_dictionary[_i].items():
                 if len(_v) > 0:
                     print("{:40s}".format(_k), "{:>20s}".format(_v))
-            print("\n")
+            print("")
 
 def main():
 
     parser = ArgumentParser()
-    parser.add_argument("-r", "--registry", help="specify Security hive to parse PolAdtEv", required=True)
+    parser.add_argument("--sec", help="specify the Security Hive", required=True)
     args = parser.parse_args()
     try:
         reg = Registry.Registry(args.registry)
@@ -117,7 +117,7 @@ def main():
     data=None
     for value in[v for v in key.values()]:
         data=value.value()
- 
+
     if data is None:
         print("any data cannot be retrieved.", file=sys.stderr)
         sys.exit(-1)
