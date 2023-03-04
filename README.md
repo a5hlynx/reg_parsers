@@ -91,5 +91,5 @@ Group Members        S-1-5-21-4005366961-3971355847-3980901421-503
 
 ## Documentation
 
-- [PolAdtEv.py](https://9ood4nothin9.blogspot.com/2021/12/parse-poladtev.html).
-- [EnumProf.py](https://9ood4nothin9.blogspot.com/2023/03/parse-accountsgroups-infomation.html).
+- [PolAdtEv.py](https://9ood4nothin9.blogspot.com/2021/12/parse-poladtev.html)
+- [EnumProf.py](https://9ood4nothin9.blogspot.com/2023/03/parse-accountsgroups-infomation.html)
