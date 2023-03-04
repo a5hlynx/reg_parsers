@@ -2,11 +2,11 @@
 
 ### PolAdtEv.py
 
-Parses PolAdtEV from Security Hive and enumerates Audit Policy, which controls the output to Windows Security EventLog.
+Parses PolAdtEV extracted from Security Hive and enumerates Audit Policy, which controls the output to Windows Security EventLog.
 
 ### EnumProf.py
 
-Parses Accounts/Groups information from Software/Sam Hives and enumerates them.
+Parses Accounts/Groups information extracted from Software/Sam Hives and enumerates them.
 
 
 ## Requirements
