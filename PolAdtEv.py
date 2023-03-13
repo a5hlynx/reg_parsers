@@ -108,13 +108,13 @@ def main():
     parser.add_argument("--sec", help="specify the Security Hive", required=True)
     args = parser.parse_args()
     try:
-        reg = Registry.Registry(args.registry)
+        reg = Registry.Registry(args.sec)
         key = reg.open("Policy\\PolAdtEv")
     except Exception as e:
         print("%s." % e, file=sys.stderr)
         sys.exit(-1)
 
-    data=None
+    data = None
     for value in[v for v in key.values()]:
         data=value.value()
 
