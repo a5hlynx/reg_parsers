@@ -4,9 +4,9 @@ if sys.version_info.major == 2:
     sys.exit(0)
 
 import os
-from Registry import Registry
 from struct import unpack
 from argparse import ArgumentParser
+import util.RecoverLog as RecoverLog
 
 class Prof:
     def __init__(self, sid):
@@ -175,8 +175,9 @@ def main():
     parser.add_argument("--sw", help="specify SoftWare Hive", required=True)
     parser.add_argument("--sam", help="specify SAM Hive", required=True)
     args = parser.parse_args()
+    _sw = RecoverLog.RecoverLog(args.sw)
+    sw = _sw.get_registry()
     try:
-        sw = Registry.Registry(args.sw)
         prof = sw.open("Microsoft\Windows NT\CurrentVersion\ProfileList")
         dn = sw.open("Microsoft\Windows\CurrentVersion\Group Policy\State")
     except Exception as e:
@@ -197,8 +198,9 @@ def main():
                 if _v.name() == "Distinguished-Name":
                      Profs[v.name()].set_distinguished_name(_v.value())
 
+    _sam = RecoverLog.RecoverLog(args.sam)
+    sam = _sam.get_registry()
     try:
-        sam = Registry.Registry(args.sam)
         account = sam.open("SAM\Domains\Account")
         alias = sam.open("SAM\Domains\Builtin\Aliases")
     except Exception as e:
@@ -237,8 +239,6 @@ def main():
     print("[Groups]")
     for g in Grps:
         g.show()
-
-
 
 if __name__ == '__main__':
     main()

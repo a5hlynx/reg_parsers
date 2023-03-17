@@ -6,9 +6,9 @@ if sys.version_info.major == 2:
     sys.exit(0)
 
 import os
-from Registry import Registry
 from struct import unpack
 from argparse import ArgumentParser
+import util.RecoverLog as RecoverLog
 
 class PolAdtEv:
     def __init__(self, data):
@@ -84,7 +84,7 @@ class PolAdtEv:
     def __set_sub_category(self):
         if len(self.subcategory_num) > self.categ_num:
             print("data might be corruptted.", file=sys.stderr)
-            sys.exit(-1) 
+            sys.exit(-1)
 
         _sub_category_num_offset, = unpack("<H", self.data[8:10])
         _category_offset = self.header_len
@@ -107,8 +107,9 @@ def main():
     parser = ArgumentParser()
     parser.add_argument("--sec", help="specify the Security Hive", required=True)
     args = parser.parse_args()
+    _reg = RecoverLog.RecoverLog(args.sec)
+    reg = _reg.get_registry()
     try:
-        reg = Registry.Registry(args.sec)
         key = reg.open("Policy\\PolAdtEv")
     except Exception as e:
         print("%s." % e, file=sys.stderr)

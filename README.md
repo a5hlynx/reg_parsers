@@ -19,7 +19,7 @@ $ pip3 install -r requirements.txt
 
 ## Usage
 
-Currently, the parsers only interpret Registry Hive, which should be obtained beforehand.
+Currently, the parsers only interpret Registry Hive, which should be obtained beforehand. When the Transaction Logs exist in the same directory, the parsers attempt to recover the Registry from Logs.
 
 ```
 $ python3 PolAdtEv.py --sec <Security Hive>
@@ -34,6 +34,8 @@ $ python3 EnumProf.py --sw <Software Hive> --sam <Sam Hive>
 Run the script with Security Hive specified, the result will be displayed to the stdout as shown below.
 
 ```
+$ ls  SECURITY*
+SECURITY  SECURITY.LOG1  SECURITY.LOG2
 $ python3 PolAdtEv.py --sec SECURITY
 [System]
 Security Stage Change                                 Success
@@ -57,6 +59,8 @@ Kerberos Authentication Service                   No Auditing
 Run the script with Software/Sam Hives specified, the result will be displayed to the stdout as shown below.
 
 ```
+$ ls SAM* SOFTWARE*
+SAM  SAM.LOG1  SAM.LOG2  SOFTWARE  SOFTWARE.LOG1  SOFTWARE.LOG2
 $ python3 EnumProf.py --sw SOFTWARE --sam SAM
 [Accounts]
 SID                  S-1-5-18
