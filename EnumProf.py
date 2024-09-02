@@ -15,6 +15,7 @@ class Prof:
         self.Distinguished_Name = None
         self.User_Name = None
         self.Full_Name = None
+        self.Comment = None
 
     def set_image_path(self, image_path):
         self.ProfileImagePath = image_path
@@ -40,10 +41,15 @@ class Prof:
             print("{:20s}".format("Full Name"), "{:<20s}".format("-"))
         else:
             print("{:20s}".format("Full Name"), "{:<20s}".format(self.Full_Name))
+        if self.Comment is None or len(self.Comment) == 0:
+            print("{:20s}".format("Comment"), "{:<20s}".format("-"))
+        else:
+            print("{:20s}".format("Comment"), "{:<20s}".format(self.Comment))
         print("")
     def update_info(self, u):
         self.User_Name = u.get_user_name()
         self.Full_Name = u.get_full_name()
+        self.Comment = u.get_comment()
 
 class Grp:
     def __init__(self, C):
@@ -56,8 +62,8 @@ class Grp:
     def __parse_c(self):
         _header = self.C[:0x34]
         _vals = unpack("<13L", _header)
-        self.Group_Name = self.C[0x34+_vals[4]:0x34+_vals[4]+_vals[5]].decode()
-        self.Comment = self.C[0x34+_vals[7]:0x34+_vals[7]+_vals[8]].decode()
+        self.Group_Name = self.C[0x34+_vals[4]:0x34+_vals[4]+_vals[5]].decode("utf-16le","ignore")
+        self.Comment = self.C[0x34+_vals[7]:0x34+_vals[7]+_vals[8]].decode("utf-16le","ignore")
         self.__parse_users()
 
     def __parse_users(self):
@@ -100,6 +106,12 @@ class Grp:
     def show(self):
         if len(self.Group_Members) > 0:
             print("{:20s}".format("Group Name"), "{:<20s}".format(self.Group_Name))
+
+            if self.Comment is None or len(self.Comment) == 0:
+                print("{:20s}".format("Comment"), "{:<20s}".format("-"))
+            else:
+                print("{:20s}".format("Comment"), "{:<20s}".format(self.Comment))
+
             _vn = True
             for _g in self.Group_Members:
                 if _vn:
@@ -126,9 +138,9 @@ class Usr():
     def __parse_v(self):
         _header = self.V[:44]
         _vals = unpack("<11L", _header)
-        self.User_Name = self.V[_vals[3]+0xCC:_vals[3]+0xCC+_vals[4]].decode()
-        self.Full_Name = self.V[_vals[6]+0xCC:_vals[6]+0xCC+_vals[7]].decode()
-        self.Comment = self.V[_vals[9]+0xCC:_vals[9]+0xCC+_vals[10]].decode()
+        self.User_Name = self.V[_vals[3]+0xCC:_vals[3]+0xCC+_vals[4]].decode("utf-16le","ignore")
+        self.Full_Name = self.V[_vals[6]+0xCC:_vals[6]+0xCC+_vals[7]].decode("utf-16le","ignore")
+        self.Comment = self.V[_vals[9]+0xCC:_vals[9]+0xCC+_vals[10]].decode("utf-16le","ignore")
         if int(hex(_vals[1]),16) in self.types:
             self.Type = self.types[int(hex(_vals[1]),16)]
 
